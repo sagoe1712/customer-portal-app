@@ -1,0 +1,84 @@
+
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+     <div class="center sliding">Profile</div>
+  </div>
+	<div class="right">
+		<!-- left link contains only icon - additional "icon-only" class-->
+		<a href="shopping-cart.html" class=""><i class="fa fa-shopping-cart fa-2x"></i> <span id="cart-count">0</span></a>
+	</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="profile-page" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block">
+        <div class="content-block-inner">
+
+
+			<div class="div-contact">
+				<h3 class="summary-div-header"><u>My Profile</u> </h3>
+				<form action="#">
+					<div class="inputbox">
+						<h3>Your Membership No: <span id="memberno"></span></h3>
+						<h3>Your point balance: <span id="point-balance"></span></h3>
+						<input type="text" id="txtfname" placeholder="First Name"  class="inputtype">
+					</div>
+					<div class="inputbox">
+						<input type="text" id="txtlname" placeholder="Last Name"  class="inputtype">
+					</div>
+					<div class="inputbox">
+						<input type="text" id="txtemail" placeholder="Email Address"  class="inputtype">
+					</div>
+					<div class="inputbox">
+						<input type="text" id="txtphone" placeholder="Phone Number" class="inputtype">
+					</div>
+				</form>
+			</div>
+
+
+			<div class="table-cart-address">
+				<h3 class="summary-div-header">Address</h3>
+				<form action="#">
+					<div class="inputbox">
+						<label>Address  <span>*</span></label>
+						<input type="text" id="txtaddress" class="inputtype">
+					</div>
+					<div class="inputbox">
+						<label>Country  <span>*</span></label>
+						<select  class="inputtype">
+							<option>NIGERIA</option>
+						</select>
+					</div>
+					<div class="inputbox">
+						<label>State  <span>*</span></label>
+						<select  id="delivery-state" class="inputtype">
+							<option value="">Select State </option>
+						</select>
+					</div>
+					<div class="inputbox">
+						<label>City  <span>*</span></label>
+						<select id="delivery-city"  class="inputtype">
+							<option value="">Select City</option>
+						</select>
+					</div>
+				</form>
+			</div>
+
+			<div class="carttotal">
+				<p><span class="sub-t">Total Product<span class="sub-t-p" id="cost-price"></span></span></p>
+				<p class="p-delivery"><span class="sub-t">Total Delivery<span class="sub-t-p" id="delivery-text"></span></span></p>
+				<p><span class="grand-t">Grand Total <span class="sub-t-p" id="grand-total">0</span></span>	</p>
+			</div>
+
+
+					<a class="button btn-checkout" id="btn-checkout">Confirm</a>
+			<a class="button btn-cancel" id="returnsuccess">Cancel</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

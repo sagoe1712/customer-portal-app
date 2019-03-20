@@ -1,0 +1,43 @@
+$.each(data,function(key,val){
+
+		if (typeof val.Sub_menu !== 'undefined' && val.Sub_menu.length > 0) {
+			//var cat = val.Category_id;
+			//var capse = "#collapse"+cat;
+        html += "<div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' href='#"+val.Name.replace(/\s/g,'')+"'>"+val.Name;
+
+			if (typeof val.Category_id !== 'undefined' && val.Category_id.length > 0) {
+				html += " link:"+val.Category_id;
+			}
+		html +="</a></h4></div>";
+
+
+        //if (typeof val === "object")
+        //if (typeof val.Sub_menu !== 'undefined' && val.Sub_menu.length > 0) {
+		html +="<div id='"+val.Name.replace(/\s/g,'')+"' class='panel-collapse collapse'>";
+
+		html += makeMenu(val.Sub_menu);
+
+		html +="</div>";
+		} else {
+		html +="<div class='panel-body'>"+val.Name;
+
+			if (typeof val.Category_id !== 'undefined' && val.Category_id.length > 0) {
+				html += " link:"+val.Category_id;
+			}
+		html +="</div>";
+		}
+
+
+		//}
+        //else{
+          // html += "<li>"+val.Name+"</li>";
+        //html += "</li>";
+		//}
+    });
+    html += "</div></div>";
+    return html;
+};
+
+
+//alert(menu);
+	});

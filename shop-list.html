@@ -1,0 +1,68 @@
+
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+    <div class="center sliding"><h4 id="category-name">40 injojonionini</h4></div>
+      <div class="right">
+          <!-- left link contains only icon - additional "icon-only" class-->
+          <a href="shopping-cart.html" class=""><i class="fa fa-shopping-cart fa-2x"></i> <span id="cart-count">0</span></a>
+      </div>
+</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="shop-list" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block">
+        <div class="content-block-inner">
+          <div class="custom-accordion">
+
+            <div class="accordion-item width-100">
+              <div class="accordion-item-toggle cat-filters-head">
+                <!-- <i class="icon icon-plus">v</i>
+                 <i class="icon icon-minus">X</i>-->
+                <span>FILTERS</span>
+              </div>
+              <div class="accordion-item-content border-bottom">
+                <p>
+
+                      <input type="text" placeholder="Search Item..." class="inputtype">
+                </p>
+                <br/><br/><br/>
+<p>
+                      <select id="drpshopsort" class="inputtype">
+                          <option value="">Sort By</option>
+                        <option value="1">Ascending</option>
+                          <option value="2">Descending</option>
+                      </select>
+</p><br/><br/><br/>
+
+                <p>
+
+                      <select id="drpshopmethod" class="inputtype">
+                        <option value="">Redemption Method</option>
+                          <option value="1">Pick Up</option>
+                          <option value="2">Delivery</option>
+                          <option value="3">Both</option>
+
+
+                      </select>
+
+                </p>
+              </div>
+            </div>
+          </div>
+
+			<div class="shop-area">
+
+			</div>
+
+          <a href="#" class="button btn-loadmore" id="loadMore">Load More</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

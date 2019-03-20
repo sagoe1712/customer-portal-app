@@ -1,0 +1,50 @@
+
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+    <div class="center sliding">Summary</div>
+	  <div class="right">
+		  <!-- left link contains only icon - additional "icon-only" class-->
+		  <a href="shopping-cart.html" class=""><i class="fa fa-shopping-cart fa-2x"></i> <span id="cart-count">0</span></a>
+	  </div>
+</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="bill-cart" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block">
+        <div class="content-block-inner">
+			<div class="bill-item">
+
+			</div>
+
+			<div class="div-contact div-bill-contact">
+				<h3 class="summary-div-header"><u>Cont</u>act Information</h3>
+				<form action="#">
+					<div class="inputbox cust_id" style="display: none;">
+						<input type="text" id="txtcustid" placeholder=""  class="inputtype">
+					</div>
+					<h4 class="div-customer-info"></h4>
+					<div class="inputbox">
+						<input type="text" id="txtemail" placeholder="Email Address"  class="inputtype">
+					</div>
+					<div class="inputbox">
+						<input type="text" id="txtphone" placeholder="Phone Number" class="inputtype">
+					</div>
+				</form>
+			</div>
+
+
+
+					<a class="button btn-checkout" id="btn-bill-pay">Redeem</a>
+			<a class="button btn-cancel" id="returnsuccess">Cancel</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
