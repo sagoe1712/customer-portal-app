@@ -696,7 +696,7 @@ myApp.onPageInit('movie-details', function (page) {
 
     $.ajax({
         type: "POST",
-        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/movies",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/movie",
         headers: {"token": token},
         data: {product_code: product_code},
         dataType: "json",
