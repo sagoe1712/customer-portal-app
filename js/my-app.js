@@ -76,7 +76,7 @@ var cat_page=1;
 var cur_no_itm = cat_limit;
 var company_id = 2;
 var token1 = localStorage.getItem("token");
-var token = "Bearer " + token1.substring(1, token1.length-1);;
+var token = "Bearer " + token1.substring(1, token1.length-1);
 var package_name;
 var currency_name;
 var hasdelivery = 0;
@@ -589,7 +589,7 @@ myApp.onPageInit('cinema-page', function (page) {
         success: function (msg) {
             $('.loading-div').hide();
 
-            if (msg.status == 1) {
+            if (msg.status == 200) {
                 cinema_list = msg.data;
                 console.log(cinema_list);
                 $.each(msg.data, function (key, value) {
@@ -708,7 +708,7 @@ myApp.onPageInit('movie-details', function (page) {
 
             $('.loading-div').hide();
 
-            if(msg.status == 1){
+            if(msg.status == 200){
                 $('.movie-banner').html('<img src="'+msg.data.artwork+'">')
                 $('.movie-desc').html(msg.data.description);
                 img_url = msg.data.artwork;
@@ -866,7 +866,7 @@ $(document).on('click', '#btn-movie-buy', function () {
             },
             success: function (msg) {
                 $('.loading-div').hide();
-                if (msg.status == 1) {
+                if (msg.status == 200) {
 
                     voucher_code = msg.voucher_code;
                     order_no = msg.order_no;
