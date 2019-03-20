@@ -494,10 +494,8 @@ $(document).on('click', '#btn-login', function () {
                     $('.loading-div').hide();
                     if (msg.status == 200) {
                         localStorage.setItem("token", JSON.stringify(msg.access_token));
-                       // alert(access_token);
-                        //token = 'Bearer '+access_token;
-                        //alert(token);
                         window.location.replace('inner.html');
+                        return false;
 
                     }
                     else {
