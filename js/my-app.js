@@ -96,7 +96,6 @@ function getcity(state_id){
     let city = "";
     $.ajax({
         type: "GET",
-        //url: "getcity.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/cities",
         headers: {"Authorization": token},
         dataType: "json",
@@ -142,7 +141,6 @@ function getdeliveryprice(address_id){
 
     $.ajax({
         type: "POST",
-        //url: "getdelivery.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/delivery/cost",
         headers: {"Authorization": token},
         data:{"address_id": address_id},
@@ -169,7 +167,6 @@ function getstate(){
     let state = "";
     $.ajax({
         type: "GET",
-        //url: "getstate.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/state",
         headers: {"Authorization": token},
         dataType: "json",
@@ -199,7 +196,6 @@ function pulladdress(){
     let addrp = "";
     $.ajax({
         type: "GET",
-        //url: "getaddress.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/address/list",
         headers: {"Authorization": token},
         dataType: "json",
@@ -246,7 +242,6 @@ function addaddress(){
     if(first_name && last_name && email && address && state_id && city_id){
         $.ajax({
             type: "POST",
-            //url: "addaddress.php",
             url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/address/create",
             headers: {"Authorization": token},
             data: payload,
@@ -349,7 +344,6 @@ function cartcount(){
 function cartitem(){
     $.ajax({
         type: "GET",
-        //url: "cart-list.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/list",
         headers: {"Authorization": token},
         dataType: "json",
@@ -534,12 +528,8 @@ myApp.onPageInit('catalogue', function (page) {
 
     $.ajax({
         type: "GET",
-        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1//category/catalogue",
-        headers: {
-            "accept": "application/json",
-            "Access-Control-Allow-Origin":"*",
-            "Authorization": token
-        },
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue",
+        headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
             $('.loading-div').show();
@@ -589,8 +579,8 @@ myApp.onPageInit('cinema-page', function (page) {
 
     $.ajax({
         type: "GET",
-        url: "getcinemas.php",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/movies",
+        //url: "getcinemas.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/movies",
         headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
@@ -906,8 +896,8 @@ myApp.onPageInit('view-restaurants', function (page) {
 
     $.ajax({
         type: "GET",
-        url: "getrestaurants.php",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/meals",
+        //url: "getrestaurants.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/meals",
         headers: {"token": token},
         dataType: "json",
         beforeSend: function() {
@@ -1131,8 +1121,7 @@ var a = 1;
 
     $.ajax({
         type: "POST",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/meals/content",
-        url: "getmeallist.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/meals/content",
         headers: {"token": token},
         data: {branch_id: branch_id, categories: category_data.split(',')},
         dataType: "json",
@@ -1290,8 +1279,7 @@ myApp.onPageInit('bills-list', function (page) {
 
     $.ajax({
         type: "GET",
-        url:"getbill-list.php",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/bills",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/bills",
         headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
@@ -1441,8 +1429,7 @@ $(document).on('change','#drpshopsort', function () {
     var prd_itm = "";
     $.ajax({
         type: "POST",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
-        url: "getproduct.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
         headers: {"token": token},
         data: {category_id: category_id, limit: cat_limit, delivery_type: cat_delivery_type, sort: cat_sort, page: cat_page},
         dataType: "json",
@@ -1564,8 +1551,7 @@ myApp.onPageInit('biller-product', function (page) {
     var prd_itm = "";
     $.ajax({
         type: "POST",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/bills/content",
-        url: "getbillscontent.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/bills/content",
         headers: {"Authorization": token},
         data: {category_id: category_id},
         dataType: "json",
@@ -1771,8 +1757,7 @@ myApp.onPageInit('shop-list', function (page) {
 
     $.ajax({
         type: "POST",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
-        url: "getproduct.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
         headers: {"Authorization": token},
         data: {category_id: category_id, limit: cat_limit, delivery_type: cat_delivery_type, sort: cat_sort, page: cat_page},
         dataType: "json",
@@ -1840,8 +1825,7 @@ myApp.onPageInit('events-list', function (page) {
 
     $.ajax({
         type: "POST",
-        //url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/events/list",
-        url: "getevents.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/events/list",
         headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
@@ -2062,7 +2046,6 @@ myApp.onPageInit('profile-page', function (page) {
     $.ajax({
         type: "GET",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/profile",
-        //url: "getprofile.php",
         headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
@@ -2105,7 +2088,6 @@ myApp.onPageInit('biller-listing', function (page) {
     $.ajax({
         type: "POST",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
-        //url: "getproduct.php",
         headers: {"Authorization": token},
         data: {category_id: category_id},
         dataType: "json",
@@ -2183,8 +2165,6 @@ myApp.onPageInit('single-product', function (page) {
     $.ajax({
         type: "POST",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/catalogue/product",
-        //url: "getproduct_details.php",
-
         headers: {"Authorization": token},
         data: {product_code: product_code},
         dataType: "json",
@@ -2520,7 +2500,6 @@ $(document).on('click','.delete-itm-cart', function(){
     var item_id = $(this).attr("data-id");
     $.ajax({
         type: "POST",
-        //url: "cart-delete.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/count",
         headers: {"Authorization": token},
         data: {"cart_item_id": item_id},
@@ -2559,7 +2538,6 @@ $(document).on('click', '.btn-summ-update', function () {
     prod_quant = $('.summ-qty[data-id="'+upitmid+'"]').val();
     $.ajax({
         type: "POST",
-        //url: "cart-update.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/update/single",
         headers: {"Authorization": token},
         data: {"item_id": upitmid, "item_qty":prod_quant},
@@ -2712,7 +2690,6 @@ myApp.onPageInit('experience', function () {
     $.ajax({
         type: "GET",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/experience/countries",
-        //url: "getexpcountries.php",
         headers: {Authorization: token},
         dataType: "json",
         beforeSend: function() {
@@ -2807,7 +2784,6 @@ myApp.onPageInit('experience-list', function (page) {
 
     $.ajax({
         type: "GET",
-        //url: "getexpcategories.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/experience",
         headers: {"Authorization": token},
         dataType: "json",
@@ -2850,7 +2826,6 @@ myApp.onPageInit('exp-cat-list', function () {
 
     $.ajax({
         type: "POST",
-        //url: "getexperiencelist.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/experience/content",
         headers: {"Authorization": token},
         data: {category_id: category_id, exp_country: exp_country_id, exp_city: exp_city_id},
@@ -2914,7 +2889,6 @@ myApp.onPageInit('experience-product', function (page) {
 
     $.ajax({
         type: "POST",
-        //url: "getproduct_details_exp.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/experience/single",
         headers: {"Authorization": token},
         data: {"product_code": product_code},
