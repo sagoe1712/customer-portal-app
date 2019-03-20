@@ -13,7 +13,7 @@ var prod_quant;
 var totalprdprice;
 var prod_signature;
 var max_quant;
-let img_url;
+var img_url;
 var branch_id;
 var branch_name;
 var delivery_type;
@@ -69,7 +69,7 @@ var movie_details = [];
 var movie_day_count = 0;
 var movie_price;
 var total_movie_price;
-let cat_limit = 5;
+var cat_limit = 5;
 var cat_delivery_type;
 var cat_sort;
 var cat_page=1;
@@ -93,7 +93,7 @@ var myApp = new Framework7();
 
 
 function getcity(state_id){
-    let city = "";
+    var city = "";
     $.ajax({
         type: "GET",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/cities",
@@ -164,7 +164,7 @@ function getdeliveryprice(address_id){
 }
 
 function getstate(){
-    let state = "";
+    var state = "";
     $.ajax({
         type: "GET",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/state",
@@ -193,7 +193,7 @@ function getstate(){
 
 function pulladdress(){
 
-    let addrp = "";
+    var addrp = "";
     $.ajax({
         type: "GET",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/address/list",
@@ -227,7 +227,7 @@ function addaddress(){
     var phone = $.trim($('#txtphone').val());
     var address = $.trim($('#txtaddress').val());
 
-    let payload = {
+    var payload = {
         "firstname": first_name,
         "lastname": last_name,
         "email": email,
@@ -276,15 +276,15 @@ function totalshipitm() {
 
 
 function calccombo() {
-    let self = this;
+    var self = this;
     $.each(productdetails[0].data.combinations, function (index, value) {
 
-        let comboi = custvar.length;
-        let trackmain = 0;
+        var comboi = custvar.length;
+        var trackmain = 0;
 
         $.each(custvar, function (i, val) {
-            let track;
-            let tracki = 0;
+            var track;
+            var tracki = 0;
 
             track = (value.comb[i].includes(val));
 
@@ -353,7 +353,7 @@ function cartitem(){
         success: function (msg) {
             $('.loading-div').hide();
             if (msg.status == 200) {
-                let result = "";
+                var result = "";
                 if(msg.data != "") {
                    // console.log(cartitms);
                     $.each(msg.data.cart_items, function (key, value) {
@@ -523,7 +523,7 @@ myApp.onPageInit('catalogue', function (page) {
 
     cartcount();
 
-    let list_table = "";
+    var list_table = "";
     var d = 0;
 
     $.ajax({
@@ -574,7 +574,7 @@ myApp.onPageInit('index', function (page) {
 
 myApp.onPageInit('cinema-page', function (page) {
     cartcount();
-    let list_table = "";
+    var list_table = "";
     var d = 0;
 
     $.ajax({
@@ -634,7 +634,7 @@ $(document).on('click', 'a.cinema-link', function () {
     var menu = cinema_list[counta].tickets;
     //console.log(menu);
 
-    let list_table1 = "";
+    var list_table1 = "";
 
     list_table1 += "<tr class='row-back'>";
     list_table1 += "<td colspan='3'>";
@@ -695,11 +695,10 @@ myApp.onPageInit('movie-details', function (page) {
 
 
     $.ajax({
-        type: "GET",
-        //url:"https://rewardsboxnigeria.com/rewardsbox/api/v1/?api=movie_details&product_code="+product_code,
-        url: "getmoviedetails.php",
+        type: "POST",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/movies",
         headers: {"token": token},
-        //data: {product_code: product_code},
+        data: {product_code: product_code},
         dataType: "json",
         beforeSend: function() {
             $('.loading-div').show();
@@ -845,19 +844,21 @@ $(document).on('click', '#btn-movie-buy', function () {
         return false;
     } else {
 
-        let payload = {
+        var payload = {
             quantity: prod_quant,
-            price: total_movie_price,
+            price: movie_price,
             signature: prod_signature,
             email: email,
-            phone_no: phone
+            phone_no: phone,
+            product_name: movie_name,
+            product_code: product_code
         };
 
         $.ajax({
 
             type: "POST",
-            url: "cinema_purchase.php",
-            //url: "http://rewardsboxnigeria.com/rewardsbox/api/v1/?api=cinema_purchase",
+            //url: "cinema_purchase.php",
+            url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/redeem",
             headers: {token: token},
             data: payload,
             dataType: "json",
@@ -889,7 +890,7 @@ myApp.onPageInit('view-restaurants', function (page) {
 
     cartcount();
 
-    let list_table = "";
+    var list_table = "";
     var d = 0;
 
 
@@ -954,7 +955,7 @@ $(document).on('click', 'a.meal-link', function () {
 
     //console.log(menu);
 
-    let list_table1 = "";
+    var list_table1 = "";
 
     list_table1 += "<tr class='row-back'>";
     list_table1 += "<td colspan='2'>";
@@ -1009,7 +1010,7 @@ $(document).on('click', 'a.cat-link', function () {
     var e = 0;
     var menu = cat_list[counta].child_menu;
 
-    let list_table1 = "";
+    var list_table1 = "";
 
     list_table1 += "<tr class='row-back'>";
     list_table1 += "<td colspan='2'>";
@@ -1043,7 +1044,7 @@ $(document).on('click', 'a.cat-link1', function () {
     countb = $(this).attr('data-count');
     var menu1 = cat_list[counta].child_menu[countb].category;
 
-    let list_table2 = "";
+    var list_table2 = "";
 
     list_table2 += "<tr class='row-back'>";
     list_table2 += "<td colspan='2'>";
@@ -1239,8 +1240,7 @@ $(document).on('click', '#btn-meal-redeem', function () {
     }else {
         $.ajax({
             type: "POST",
-            url:"addtocart.php",
-            //url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
+            url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
             headers: {token: token},
             data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:1, name:product_name,pickup_location:branch_id},
             dataType: "json",
@@ -1274,7 +1274,7 @@ myApp.onPageInit('bills-list', function (page) {
     cartcount();
 
     //myApp.alert("catalogue page loaded");
-    let list_table = "";
+    var list_table = "";
     var d = 0;
 
     $.ajax({
@@ -1328,7 +1328,7 @@ $(document).on('click', 'a.bills-link', function () {
     var e = 0;
     var menu = cat_list[counta].vendors;
 
-    let list_table1 = "";
+    var list_table1 = "";
 
     list_table1 += "<tr class='row-back'>";
     list_table1 += "<td colspan='2'>";
@@ -1488,8 +1488,8 @@ $(document).on('change','#drpshopmethod', function () {
     var prd_itm;
     $.ajax({
         type: "POST",
-        //url:"https://rewardsboxnigeria.com/rewardsbox/api/v1/?api=get_products",
-        url: "getproduct.php",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
+        //url: "getproduct.php",
         headers: {"token": token},
         data: {category_id: category_id, limit: cat_limit, delivery_type: cat_delivery_type, sort: cat_sort, page: cat_page},
         dataType: "json",
@@ -1650,7 +1650,7 @@ $(document).on('blur', '#txtcustid', function () {
         myApp.alert("Enter the "+customer_id_text)
         return false;
     }else {
-        let payload = {
+        var payload = {
 
             signature: prod_signature,
             customer_id: customer_id
@@ -1661,8 +1661,8 @@ $(document).on('blur', '#txtcustid', function () {
         $.ajax({
 
             type: "POST",
-            url: "validate.php",
-            //url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/bills/validate",
+
+            url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/bills/validate",
             headers: {Authorization: token},
             data: payload,
             dataType: "json",
@@ -1698,7 +1698,7 @@ $(document).on('click', '#btn-bill-pay', function () {
     } else if (phone == "") {
         myApp.alert("Enter Phone Number");
     } else {
-        let payload = {
+        var payload = {
 
             signature: prod_signature,
             price: tprice,
@@ -1716,8 +1716,8 @@ $(document).on('click', '#btn-bill-pay', function () {
         $.ajax({
 
             type: "POST",
-            url: "billpayment.php",
-            //url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/bills/checkout",
+
+            url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/bills/checkout",
             headers: {Authorization: token},
             data: payload,
             dataType: "json",
@@ -1896,7 +1896,7 @@ myApp.onPageInit('event-details', function (page) {
     $('.category-name').html(events[event_count].event_title);
 
 
-    let result = "";
+    var result = "";
 
     result += '<div class="single-product">';
     result += '<div class="single-event-img">';
@@ -1999,7 +1999,7 @@ $(document).on('click', '#btn-event-buy', function () {
         return false;
     } else {
 
-        let exp_payload = {
+        var exp_payload = {
             qty: prod_quant,
             price: prdprice,
             signature: prod_signature,
@@ -2188,7 +2188,7 @@ myApp.onPageInit('single-product', function (page) {
                 //delivery_type = msg.data.delivery_type;
 
 
-                let result = "";
+                var result = "";
 
                 result += '<div class="single-product">';
                 result += '<div class="single-product-img">';
@@ -2211,7 +2211,7 @@ myApp.onPageInit('single-product', function (page) {
                 result += '</div>';
                 result += '<form action="#">';
 
-                let result2 = "";
+                var result2 = "";
                 if (msg.data.delivery_type == 1) {
                     delivery_type = 1;
                     result2 += '<p class=""><input type="radio" class="rad-delmet" value="1" checked="checked"/>';
@@ -2299,7 +2299,7 @@ $(document).on('change', '.sel-varient', function () {
 
     custvar = [];
 //	//myApp.alert(mixes);
-    let self = this;
+    var self = this;
     $.each($('.varient-div select'), function (index, value) {
         // console.log($(value).find('option:selected').val())
         // return false
@@ -2341,10 +2341,10 @@ $(document).on('change', '.rad-delmet', function () {
 
 $(document).on('click', '#btn-buy', function () {
     //myApp.alert(delivery_type);
-    // let delmet = $(".rad-opt-met").val();
+    // var delmet = $(".rad-opt-met").val();
     // alert(delmet);
-    let check_variant = 0;
-    let check_name = "";
+    var check_variant = 0;
+    var check_name = "";
     if (hasvariant == 1) {
         $('.sel-varient').each(function () {
             if ($(this).val() == "") {
@@ -2425,8 +2425,8 @@ myApp.onPageInit('shopping-cart', function (page) {
     cartcount();
     cartitem();
 
-    // let result;
-    // let result2;
+    // var result;
+    // var result2;
     //
     // if (delivery_type == 1) {
     //     delivery_name = "Pick Up:";
@@ -2606,6 +2606,67 @@ $(document).on('change', '#delivery-city', function () {
 
 });
 
+$(document).on('click', '#btn-profile-update', function () {
+    //myApp.alert("This button works");
+    var first_name = $.trim($('#txtfname').val());
+    var last_name = $.trim($('#txtlname').val());
+    var email = $.trim($('#txtemail').val());
+    var phone = $.trim($('#txtphone').val());
+    var address = $.trim($('#txtaddress').val());
+
+
+
+
+    if (first_name == "") {
+        myApp.alert("Enter First Name");
+        return false;
+    } else if (last_name == "") {
+        myApp.alert("Enter Last Name");
+        return false;
+    } else if (email == "") {
+        myApp.alert("Enter Email Address");
+        return false;
+    } else if (phone == "") {
+        myApp.alert("Enter Phone Number");
+        return false;
+    } else {
+        var payload = {
+          firstname: first_name,
+            lastname: last_name,
+            phone: phone,
+            address: address
+        };
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/profile/update",
+            headers: {token: token},
+            data: payload,
+            dataType: "json",
+            beforeSend: function() {
+                $('.loading-div').show();
+            },
+            success: function (msg) {
+                $('.loading-div').hide();
+                console.log(msg);
+                if (msg.status == 200) {
+                   myApp.alert(msg.message);
+                }else if (msg.status == 401){
+                    window.location.replace("index.html");
+                    return false;
+                } else {
+                    myApp.alert(msg.message);
+                    return false;
+                }
+            }
+        });
+        return false;
+
+    }
+
+});
 
 $(document).on('click', '#btn-checkout', function () {
     //myApp.alert("This button works");
@@ -2636,7 +2697,7 @@ $(document).on('click', '#btn-checkout', function () {
         myApp.alert("Enter Phone Number");
         return false;
     } else {
-        let payload = {
+        var payload = {
             "address_id": addressid,
             "delivery_price": delivery_price
         };
@@ -2720,7 +2781,7 @@ $(document).on('change', '.drppickup', function () {
 $(document).on('change', '#exp-country', function () {
     exp_country_id = $(this).val();
     exp_country_name = $('option:selected', this).attr('data-name');
-    let cityresult = "";
+    var cityresult = "";
     //fetches the city in the country
 
     $.ajax({
@@ -2779,7 +2840,7 @@ $(document).on('click', '#btn-experience', function () {
 myApp.onPageInit('experience-list', function (page) {
     //myApp.alert("catalogue page loaded");
     cartcount();
-    let expcatlist;
+    var expcatlist;
 
 
     $.ajax({
@@ -2934,11 +2995,11 @@ myApp.onPageInit('experience-product', function (page) {
                 //delivery_type = msg.data.delivery_type;
 
 
-                let result = "";
-                let resultqty = "";
-                let resultpickup = "";
-                let resultadvance = "";
-                let resultfaqs = "";
+                var result = "";
+                var resultqty = "";
+                var resultpickup = "";
+                var resultadvance = "";
+                var resultfaqs = "";
 
                 result += '<div class="single-product">';
                 result += '<div class="single-product-img">';
@@ -3127,7 +3188,7 @@ $(document).on('change', '#date_slot', function () {
     exp_date = day_slot;
 
 
-    let result = "";
+    var result = "";
 
     result += '<option value="">Select Time Slot..</option>';
    // console.log(exp_day_slot[day_no]);
@@ -3183,8 +3244,8 @@ myApp.onPageInit('experience-cart', function (page) {
 
     cartcount();
 
-    let result;
-    let result2;
+    var result;
+    var result2;
 
 
 
@@ -3243,7 +3304,7 @@ $(document).on('click', '#btn-exp-buy', function(){
         myApp.alert("Enter Phone Number");
         return false;
     } else {
-        let exp_payload = {
+        var exp_payload = {
             exp_date: exp_date_post,
             exp_day: exp_date_post,
             price: exp_adult_price,
