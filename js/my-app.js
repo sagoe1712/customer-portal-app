@@ -478,6 +478,7 @@ myApp.onPageInit('about', function (page) {
 $(document).on('click', '#btn-login', function () {
 
 
+
     var username = $('#txtUsername').val();
     var password = $('#pwdPass').val();
 //	myApp.alert(username +" "+ password);
@@ -488,14 +489,13 @@ $(document).on('click', '#btn-login', function () {
             $.ajax({
                 type: "POST",
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/login",
-              dataType: "json",
+                dataType: "json",
                 data:{"email":username, "password":password, "company_id":company_id},
                 success: function (msg) {
                     $('.loading-div').hide();
                     if (msg.status == 200) {
                         localStorage.setItem("token", JSON.stringify(msg.access_token));
                         window.location.replace('inner.html');
-                        return false;
 
                     }
                     else {
