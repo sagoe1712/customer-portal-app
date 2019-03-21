@@ -860,7 +860,7 @@ $(document).on('click', '#btn-movie-buy', function () {
             type: "POST",
             //url: "cinema_purchase.php",
             url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/redeem",
-            headers: {token: token},
+            headers: {"Authorization": token},
             data: payload,
             dataType: "json",
             beforeSend: function() {
@@ -1242,7 +1242,7 @@ $(document).on('click', '#btn-meal-redeem', function () {
         $.ajax({
             type: "POST",
             url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
-            headers: {token: token},
+            headers: {"Authorization": token},
             data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:1, name:product_name,pickup_location:branch_id},
             dataType: "json",
             beforeSend: function() {
@@ -2382,7 +2382,7 @@ $(document).on('click', '#btn-buy', function () {
                 type: "POST",
                 //url:"addtocart.php",
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
-                headers: {token: token},
+                headers: {"Authorization": token},
                 data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:1, name:product_name,pickup_location:store_id},
                 dataType: "json",
                 beforeSend: function() {
@@ -2572,7 +2572,7 @@ $(document).on('change', '#delivery-state', function () {
         type: "GET",
         //url:"",
         url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/common/states",
-        headers: {token: token},
+        headers: {"Authorization": token},
         data: {state_id: state_id},
         dataType: "json",
         beforeSend: function() {
@@ -2646,7 +2646,7 @@ $(document).on('click', '#btn-profile-update', function () {
 
             type: "POST",
             url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/profile/update",
-            headers: {token: token},
+            headers: {"Authorization": token},
             data: payload,
             dataType: "json",
             beforeSend: function() {
@@ -2712,7 +2712,7 @@ $(document).on('click', '#btn-checkout', function () {
             type: "POST",
             //url: "checkout.php",
             url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/checkout",
-            headers: {token: token},
+            headers: {"Authorization": token},
             data: payload,
             dataType: "json",
             beforeSend: function() {
