@@ -265,6 +265,7 @@ function addaddress(){
         });
     }else{
         myApp.alert("Kindly fill all fields");
+        return false;
     }
 }
 
@@ -1248,17 +1249,16 @@ $(document).on('click', '#btn-meal-redeem', function () {
                 $('.loading-div').show();
             },
             success: function (msg) {
+                $('.loading-div').hide();
                 if (msg.status == 200) {
-                    $('.loading-div').hide();
                     myApp.alert(msg.message);
                     cartcount();
 
-
-
-
-
                 }else if (msg.status == 401){
                     window.location.replace("index.html");
+                    return false;
+                }else{
+                    myApp.alert(msg.status + "\n" +msg.message);
                     return false;
                 }
             }
@@ -2389,18 +2389,18 @@ $(document).on('click', '#btn-buy', function () {
                     $('.loading-div').show();
                 },
                 success: function (msg) {
+                    $('.loading-div').hide();
                     if (msg.status == 200) {
-                        $('.loading-div').hide();
+
                         myApp.alert(msg.message);
                         cartcount();
                         mainView.router.loadPage('catalogue-new.html');
-
-
-
-
                     }else if (msg.status == 401){
                         window.location.replace("index.html");
                         return false;
+                    }
+                    else {
+                        alert(msg.status +"\n" + msg.message);
                     }
                 }
             });
@@ -2579,8 +2579,9 @@ $(document).on('change', '#delivery-state', function () {
             $('.loading-div').show();
         },
         success: function (msg) {
+            $('.loading-div').hide();
             if (msg.status == 200) {
-                $('.loading-div').hide();
+
                 $('#delivery-city').html(' <option value="">Select Delivery City..</option>');
 
                 $.each(msg.data, function (key, value) {
@@ -2589,6 +2590,9 @@ $(document).on('change', '#delivery-state', function () {
 
             }else if (msg.status == 401){
                 window.location.replace("index.html");
+                return false;
+            }else{
+                myApp.alert(msg.status+"\n"+msg.message);
                 return false;
             }
         }
