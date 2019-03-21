@@ -697,7 +697,7 @@ myApp.onPageInit('movie-details', function (page) {
     $.ajax({
         type: "POST",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cinemas/movie",
-        headers: {"token": token},
+        headers: {"Authorization": token},
         data: {product_code: product_code},
         dataType: "json",
         beforeSend: function() {
@@ -899,7 +899,7 @@ myApp.onPageInit('view-restaurants', function (page) {
         type: "GET",
         //url: "getrestaurants.php",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/meals",
-        headers: {"token": token},
+        headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
             $('.loading-div').show();
@@ -1123,7 +1123,7 @@ var a = 1;
     $.ajax({
         type: "POST",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/meals/content",
-        headers: {"token": token},
+        headers: {"Authorization": token},
         data: {branch_id: branch_id, categories: category_data.split(',')},
         dataType: "json",
         beforeSend: function() {
@@ -1374,7 +1374,7 @@ $(document).on('click','#loadMore', function () {
         type: "POST",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
         //url: "getproduct.php",
-        headers: {"token": token},
+        headers: {"Authorization": token},
         data: {category_id: category_id, limit: cat_limit, delivery_type: cat_delivery_type, sort: cat_sort, page: cat_page},
         dataType: "json",
         beforeSend: function() {
@@ -1430,7 +1430,7 @@ $(document).on('change','#drpshopsort', function () {
     $.ajax({
         type: "POST",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
-        headers: {"token": token},
+        headers: {"Authorization": token},
         data: {category_id: category_id, limit: cat_limit, delivery_type: cat_delivery_type, sort: cat_sort, page: cat_page},
         dataType: "json",
         beforeSend: function() {
@@ -1490,7 +1490,7 @@ $(document).on('change','#drpshopmethod', function () {
         type: "POST",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/category/catalogue/content",
         //url: "getproduct.php",
-        headers: {"token": token},
+        headers: {"Authorization": token},
         data: {category_id: category_id, limit: cat_limit, delivery_type: cat_delivery_type, sort: cat_sort, page: cat_page},
         dataType: "json",
         beforeSend: function() {
