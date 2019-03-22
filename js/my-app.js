@@ -3503,8 +3503,8 @@ myApp.onPageInit('orders-page', function (page) {
 
                     list_table += "<td colspan='2'>";
                     list_table +="<p>Success Vouchers</p>";
-                    if(msg.success) {
-                        $.each(msg.success, function (key, vouch) {
+                    if(value.success) {
+                        $.each(value.success, function (key, vouch) {
                             list_table += vouch.voucher_code;
                         });
                     }
@@ -3513,8 +3513,8 @@ myApp.onPageInit('orders-page', function (page) {
 
                     list_table += "<td colspan='2'>";
                     list_table +="<p>Failed Vouchers</p>";
-                    if(msg.fail) {
-                        $.each(msg.fail, function (key, vouch) {
+                    if(value.fail) {
+                        $.each(value.fail, function (key, vouch) {
                             list_table += vouch.voucher_code;
                         });
                     }
@@ -3523,7 +3523,7 @@ myApp.onPageInit('orders-page', function (page) {
 
                     list_table += "</tr>";
                     list_table += "</table>";
-                    list_table += "<br/><br/>>";
+                    list_table += "<br/><br/>";
 
                 })
                 $('#orders-frm').html(list_table);
