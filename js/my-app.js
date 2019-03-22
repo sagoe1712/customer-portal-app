@@ -329,7 +329,7 @@ function cartcount(){
 
         },
         success: function (msg) {
-          
+
             if (msg.status == 200) {
                $('#cart-count').html(msg.data);
             }else if(msg.status == 401){
@@ -2024,7 +2024,7 @@ $(document).on('click', '#btn-event-buy', function () {
                 $('.loading-div').hide();
                 if (msg.status == 200) {
 
-                    voucher_code = msg.voucher_code;
+                    voucher_code = msg.orders.voucher;
                     order_no = msg.data;
                     mainView.router.loadPage('success.html');
                     delivery_type = "";
