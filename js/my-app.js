@@ -2010,7 +2010,7 @@ $(document).on('click', '#btn-event-buy', function () {
             event_name: event_name
         };
 
-        alert(exp_payload);
+        //alert(exp_payload);
 
         $.ajax({
 
@@ -3359,9 +3359,8 @@ $(document).on('click', '#btn-exp-buy', function(){
         $.ajax({
 
             type: "POST",
-           // url: "exp_purchase.php",
             url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/experience/checkout",
-            headers: {Authorization: token},
+            headers: {"Authorization": token},
             data: exp_payload,
             dataType: "json",
             beforeSend: function() {
@@ -3545,4 +3544,50 @@ myApp.onPageInit('orders-page', function (page) {
         }
     });
 
+});
+
+$(document).on('click', '#btn-update-password', function(){
+    var current_password = $.trim($('#curr-password').val());
+    var new_password = $.trim($('#new-password').val());
+    var password_confirmation = $.trim($('#con-new-password').val());
+
+    if (current_password == "") {
+        myApp.alert("Enter Current Password");
+        return false;
+    } else if (new_password == "") {
+        myApp.alert("Enter New Password ");
+        return false;
+    } else if (password_confirmation == "") {
+        myApp.alert("Confirm Your Password");
+        return false;
+    } else {
+        var exp_payload = {
+            current_password: current_password,
+            new_password: new_password,
+            new_password_confirmation: password_confirmation
+        };
+
+        $.ajax({
+
+            type: "POST",
+            // url: "exp_purchase.php",
+            url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/password/change",
+            headers: {"Authorization": token},
+            data: exp_payload,
+            dataType: "json",
+            beforeSend: function() {
+                $('.loading-div').show();
+            },
+            success: function (msg) {
+                $('.loading-div').hide();
+                if (msg.status == 200) {
+                    alert(msg.message);
+                }else if (msg.status == 401){
+                    window.location.replace("index.html");
+                    return false;
+                } else {
+                    myApp.alert(msg.message+"\n"+msg.data.new_password);
+                }
+            }
+        });
 });
