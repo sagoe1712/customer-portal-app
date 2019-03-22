@@ -3575,19 +3575,20 @@ $(document).on('click', '#btn-update-password', function(){
             headers: {"Authorization": token},
             data: exp_payload,
             dataType: "json",
-            beforeSend: function() {
+            beforeSend: function () {
                 $('.loading-div').show();
             },
             success: function (msg) {
                 $('.loading-div').hide();
                 if (msg.status == 200) {
                     alert(msg.message);
-                }else if (msg.status == 401){
+                } else if (msg.status == 401) {
                     window.location.replace("index.html");
                     return false;
                 } else {
-                    myApp.alert(msg.message+"\n"+msg.data.new_password);
+                    myApp.alert(msg.message + "\n" + msg.data.new_password);
                 }
             }
         });
+    }
 });
