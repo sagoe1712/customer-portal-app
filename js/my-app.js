@@ -326,10 +326,10 @@ function cartcount(){
         headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
-            $('.loading-div').show();
+
         },
         success: function (msg) {
-            $('.loading-div').hide();
+          
             if (msg.status == 200) {
                $('#cart-count').html(msg.data);
             }else if(msg.status == 401){
@@ -340,7 +340,7 @@ function cartcount(){
             }
         }
     });
-    return false;
+
 }
 
 function cartitem(){
@@ -3506,7 +3506,10 @@ myApp.onPageInit('orders-page', function (page) {
                     if(value.success) {
                         $.each(value.success, function (key, vouch) {
                             list_table += vouch.voucher_code;
+                            list_table += "<br/>";
                         });
+                    }else{
+                        list_table += "<p>No successful vouchers</p>";
                     }
 
                     list_table += "</td>";
@@ -3516,7 +3519,10 @@ myApp.onPageInit('orders-page', function (page) {
                     if(value.fail) {
                         $.each(value.fail, function (key, vouch) {
                             list_table += vouch.voucher_code;
+                            list_table += "<br/>";
                         });
+                    }else{
+                        list_table += "<p>No Failed vouchers</p>"
                     }
                     list_table += "</td>";
 
