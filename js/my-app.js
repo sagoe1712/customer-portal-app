@@ -2013,7 +2013,6 @@ $(document).on('click', '#btn-event-buy', function () {
         $.ajax({
 
             type: "POST",
-            //url: "event_purchase.php",
             url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/events/checkout",
             headers: {"Authorization": token},
             data: exp_payload,
@@ -3504,7 +3503,7 @@ myApp.onPageInit('orders-page', function (page) {
 
                     list_table += "<td colspan='2'>";
                     list_table +="<p>Success Vouchers</p>";
-                    if(msg.success.length > 0) {
+                    if(msg.success) {
                         $.each(msg.success, function (key, vouch) {
                             list_table += vouch.voucher_code;
                         });
@@ -3514,7 +3513,7 @@ myApp.onPageInit('orders-page', function (page) {
 
                     list_table += "<td colspan='2'>";
                     list_table +="<p>Failed Vouchers</p>";
-                    if(msg.fail.length > 0) {
+                    if(msg.fail) {
                         $.each(msg.fail, function (key, vouch) {
                             list_table += vouch.voucher_code;
                         });
