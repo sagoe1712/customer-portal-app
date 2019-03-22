@@ -2010,6 +2010,8 @@ $(document).on('click', '#btn-event-buy', function () {
             event_name: event_name
         };
 
+        alert(exp_payload);
+
         $.ajax({
 
             type: "POST",
