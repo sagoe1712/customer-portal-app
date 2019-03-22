@@ -1979,7 +1979,7 @@ myApp.onPageInit('event-cart', function (page) {
 
     $('.event-title').html(events[event_count].title);
     $('.event-ticket').html(event_ticket_type);
-    //$('.event-datetime').html(events[event_count].date);
+    $('.event-datetime').html(events[event_count].date);
     $('.event-venue').html(event_venue);
     $('#event-qty').val('1');
     var event_qty = $('#event-qty').val();
@@ -2015,7 +2015,7 @@ $(document).on('click', '#btn-event-buy', function () {
             type: "POST",
             //url: "event_purchase.php",
             url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/events/checkout",
-            headers: {Authorization: token},
+            headers: {"Authorization": token},
             data: exp_payload,
             dataType: "json",
             beforeSend: function() {
@@ -3478,32 +3478,33 @@ myApp.onPageInit('orders-page', function (page) {
                     list_table += "<td>";
                     list_table += value.date;
                     list_table += "</td>";
-                    list_table += "<td>";
-                    list_table +="<p>Order no</p>";
-                    list_table += value.order_no,
-                        list_table += "</td>";
-                    list_table += "<td>";
-                    list_table += "<td>";
-                    list_table +="<p>Cost</p>";
-                    list_table += value.cost,
-                        list_table += "</td>";
                     if(msg.is_shipping == 0) {
                         list_table += "<td colspan='2'>";
                         list_table +="<p>Order no</p>";
                         list_table += value.order_no,
                             list_table += "</td>";
                     }else {
+                        list_table += "<td>";
+                        list_table +="<p>Order no</p>";
+                        list_table += value.order_no,
+                            list_table += "</td>";
 
                         list_table +="<p>Shipping Cost</p>";
                         list_table += value.shipping_cost,
                             list_table += "</td>";
                     }
+                    list_table += "<td>";
+                    list_table +="<p>Cost</p>";
+                    list_table +="<b>";
+                    list_table += value.cost;
+                    list_table +="</b>";
+                        list_table += "</td>";
                     list_table += "</tr>";
                     list_table += "<tr>";
 
                     list_table += "<td colspan='2'>";
                     list_table +="<p>Success Vouchers</p>";
-                    if(msg.success) {
+                    if(msg.success.length > 0) {
                         $.each(msg.success, function (key, vouch) {
                             list_table += vouch.voucher_code;
                         });
@@ -3513,7 +3514,7 @@ myApp.onPageInit('orders-page', function (page) {
 
                     list_table += "<td colspan='2'>";
                     list_table +="<p>Failed Vouchers</p>";
-                    if(msg.fail) {
+                    if(msg.fail.length > 0) {
                         $.each(msg.fail, function (key, vouch) {
                             list_table += vouch.voucher_code;
                         });
