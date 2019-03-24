@@ -167,6 +167,9 @@ $(document).on('click', '#btn-login', function () {
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/login",
                 dataType: "json",
                 data:{"email":username, "password":password, "company_id":company_id},
+                beforeSend: function(){
+                    $('.loading-div').show();
+                },
                 success: function (msg) {
                     $('.loading-div').hide();
                     if (msg.status == 200) {
@@ -188,6 +191,40 @@ $(document).on('click', '#btn-login', function () {
         }
 
     } else {
+        myApp.alert("Kindly Enter Email Address");
+        return false;
+    }
+
+});
+
+$(document).on('click', '#btn-email-reset', function () {
+    var resetemail = $('#resetemail').val();
+
+    if(resetemail){
+        $.ajax({
+            type: "POST",
+            url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/password/reset/request",
+            dataType: "json",
+            data:{"email":resetemail, "company_id":company_id},
+            beforeSend: function(){
+                $('.loading-div').show();
+            },
+            success: function (msg) {
+                $('.loading-div').hide();
+                if (msg.status == 200) {
+
+                    myApp.alert(msg.message);
+                    return false;
+
+                }
+                else {
+                    myApp.alert(msg.message);
+                    return false;
+                }
+            }
+        });
+        return false;
+    }else {
         myApp.alert("Kindly Enter Email Address");
         return false;
     }
