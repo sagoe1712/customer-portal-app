@@ -88,6 +88,8 @@ var del_city_name;
 var addressid;
 var event_total;
 var success_vouchers = [];
+var timeout_msg = "Error Communicating With Server"
+var timeout_time = 30000;
 
 var myApp = new Framework7();
 
@@ -117,7 +119,9 @@ function getcity(state_id){
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 }
 
@@ -153,14 +157,16 @@ function getdeliveryprice(address_id){
             $('.loading-div').hide();
             if (msg.status == 200) {
              delivery_price = msg.data.data.price;
-             totalprice();
+             $("#delivery-text").html(delivery_price);
             }else if(msg.status == 401){
                 logout();
             }
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 }
 
@@ -188,7 +194,9 @@ function getstate(){
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 }
 
@@ -217,7 +225,9 @@ function pulladdress(){
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 }
 
@@ -262,7 +272,9 @@ function addaddress(){
                 else {
                     myApp.alert(msg.message);
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
     }else{
         myApp.alert("Kindly fill all fields");
@@ -270,11 +282,7 @@ function addaddress(){
     }
 }
 
-function totalshipitm() {
 
-    totalshipping = parseFloat(tprice) + parseFloat(delivery_price);
-    $('#grand-total').html(totalshipping +" "+currency);
-}
 
 
 function calccombo() {
@@ -338,12 +346,15 @@ function cartcount(){
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 }
 
 function cartitem(){
+    hasdelivery = 0;
     $.ajax({
         type: "GET",
         url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/list",
@@ -409,7 +420,9 @@ function cartitem(){
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
     return false;
 }
@@ -471,48 +484,7 @@ myApp.onPageInit('about', function (page) {
 })(jQuery);
 
 
-$(document).on('click', '#btn-login', function () {
 
-
-
-    var username = $('#txtUsername').val();
-    var password = $('#pwdPass').val();
-//	myApp.alert(username +" "+ password);
-    if (username) {
-        if (password) {
-
-            //alert(username+" "+password);
-            $.ajax({
-                type: "POST",
-                url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/login",
-                dataType: "json",
-                data:{"email":username, "password":password, "company_id":company_id},
-                success: function (msg) {
-                    $('.loading-div').hide();
-                    if (msg.status == 200) {
-                        localStorage.setItem("token", JSON.stringify(msg.access_token));
-                        window.location.replace('inner.html');
-
-                    }
-                    else {
-                        myApp.alert(msg.message);
-                        return false;
-                    }
-                }
-            });
-            return false;
-
-        } else {
-            myApp.alert("Kindly Enter Password");
-            return false;
-        }
-
-    } else {
-        myApp.alert("Kindly Enter Email Address");
-        return false;
-    }
-
-});
 
 $(document).on('click', '#logout', function () {
     window.location.replace('index.html');
@@ -559,7 +531,9 @@ myApp.onPageInit('catalogue', function (page) {
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -621,7 +595,9 @@ myApp.onPageInit('cinema-page', function (page) {
             else {
                 $('.list-cinemas').html(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -765,7 +741,9 @@ myApp.onPageInit('movie-details', function (page) {
 
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -881,7 +859,9 @@ $(document).on('click', '#btn-movie-buy', function () {
                     myApp.alert(msg.message);
                     return false;
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
 
     }
@@ -940,7 +920,9 @@ myApp.onPageInit('view-restaurants', function (page) {
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -1209,7 +1191,9 @@ var a = 1;
 
           }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -1263,7 +1247,9 @@ $(document).on('click', '#btn-meal-redeem', function () {
                     myApp.alert(msg.status + "\n" +msg.message);
                     return false;
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
 
         }
@@ -1315,7 +1301,9 @@ myApp.onPageInit('bills-list', function (page) {
             else {
                 alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 
@@ -1420,7 +1408,9 @@ $(document).on('click','#loadMore', function () {
                 myApp.alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 });
 
@@ -1478,7 +1468,9 @@ $(document).on('change','#drpshopsort', function () {
                 myApp.alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -1538,7 +1530,9 @@ $(document).on('change','#drpshopmethod', function () {
                 myApp.alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
     return false;
 
@@ -1595,7 +1589,9 @@ myApp.onPageInit('biller-product', function (page) {
                 alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 
@@ -1680,7 +1676,9 @@ $(document).on('blur', '#txtcustid', function () {
                     // $('#txtcustid').focus();
                     return false;
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
 
     }
@@ -1739,7 +1737,9 @@ $(document).on('click', '#btn-bill-pay', function () {
             }else {
                     myApp.alert(msg.message + "\n" + msg.data);
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
 
     }
@@ -1807,7 +1807,9 @@ myApp.onPageInit('shop-list', function (page) {
                 myApp.alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
     cartcount();
@@ -1877,7 +1879,9 @@ myApp.onPageInit('events-list', function (page) {
                 myApp.alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -2038,7 +2042,9 @@ $(document).on('click', '#btn-event-buy', function () {
                     myApp.alert(msg.message);
                     return false;
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
 
     }
@@ -2064,6 +2070,10 @@ myApp.onPageInit('profile-page', function (page) {
               $('#txtaddress').val(msg.data.address);
               $('#memberno').html(msg.data.member_no);
               $('#point-balance').html(msg.account_balance);
+              getstate();
+              $('#profile-state').val(msg.state_id);
+              getcity(msg.state_id);
+              $('#profile-city').val(msg.city_id);
 
 
             }
@@ -2075,7 +2085,9 @@ myApp.onPageInit('profile-page', function (page) {
                 alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -2135,7 +2147,9 @@ myApp.onPageInit('biller-listing', function (page) {
                 alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -2293,7 +2307,9 @@ myApp.onPageInit('single-product', function (page) {
                 $('.single-product-area').html("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 });
 
@@ -2343,6 +2359,8 @@ $(document).on('change', '.rad-delmet', function () {
 });
 
 $(document).on('click', '#btn-buy', function () {
+
+    var itmqty = $('#itm-quant').val();
     //myApp.alert(delivery_type);
     // var delmet = $(".rad-opt-met").val();
     // alert(delmet);
@@ -2379,6 +2397,7 @@ $(document).on('click', '#btn-buy', function () {
 
             prod_quant = $('#itm-quant').val();
             var store_id = $('.drppickup').val();
+            var store_name = $('option:selected', '.drppickup').attr(data-branchname);
            // mainView.router.loadPage('summary.html');
 
             $.ajax({
@@ -2386,7 +2405,7 @@ $(document).on('click', '#btn-buy', function () {
                 //url:"addtocart.php",
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
                 headers: {"Authorization": token},
-                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:1, name:product_name,pickup_location:store_id},
+                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:itmqty, name:product_name,pickup_location:store_id, pickup_location_name:store_name},
                 dataType: "json",
                 beforeSend: function() {
                     $('.loading-div').show();
@@ -2405,7 +2424,9 @@ $(document).on('click', '#btn-buy', function () {
                     else {
                         alert(msg.status +"\n" + msg.message);
                     }
-                }
+                },error: function(){
+                    myApp.alert(timeout_msg);
+                },timeout: timeout_time
             });
 
 
@@ -2425,6 +2446,8 @@ myApp.onPageInit('shopping-cart', function (page) {
 
     //var delivery_name;
     //alert(delivery_name);
+    $('#btn-add-address').hide();
+    $('#btn-checkout').show();
     cartcount();
     cartitem();
 
@@ -2457,7 +2480,7 @@ if(hasdelivery == 1) {
 
 
 
-$(document).on('click','#recipient-address',function(){
+$(document).on('change','#recipient-address',function(){
     addressid = $('option:selected', this).val();
     if (addressid == "new"){
         $('#txtfname').prop("disabled", false);
@@ -2467,6 +2490,8 @@ $(document).on('click','#recipient-address',function(){
         $('#txtaddress').prop("disabled", false);
         $('#delivery-city').prop("disabled", false);
         $('#delivery-state').prop("disabled", false);
+        $('#btn-add-address').show();
+        $('#btn-checkout').hide();
         getstate();
     }else if(addressid){
         $('#txtfname').prop("disabled", false);
@@ -2487,6 +2512,8 @@ $(document).on('click','#recipient-address',function(){
         $('#delivery-state').val($('option:selected', this).attr("data-state"));
         $('#delivery-city').val($('option:selected', this).attr("data-city"));
         getdeliveryprice(addressid);
+        $('#btn-add-address').hide();
+        $('#btn-checkout').show();
     }else{
         myApp.alert("Kindly Select An Address");
         $('#txtfname').prop("disabled", true);
@@ -2496,14 +2523,18 @@ $(document).on('click','#recipient-address',function(){
         $('#txtaddress').prop("disabled", true);
         $('#delivery-city').prop("disabled", true);
         $('#delivery-city').prop("disabled", true);
+        $('#btn-add-address').hide();
+        $('#btn-checkout').show();
     }
 });
-
+$(document).on('click', '#btn-add-address', function(){
+    addaddress();
+});
 $(document).on('click','.delete-itm-cart', function(){
     var item_id = $(this).attr("data-id");
     $.ajax({
         type: "POST",
-        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/count",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/delete",
         headers: {"Authorization": token},
         data: {"cart_item_id": item_id},
         dataType: "json",
@@ -2514,15 +2545,18 @@ $(document).on('click','.delete-itm-cart', function(){
             $('.loading-div').hide();
             if (msg.status == 200) {
                 myApp.alert(msg.message);
+                $('#cart-count').html(msg.cartqty);
+                $('#cost-price').html(msg.cart_total.totalprice);
                 cartitem();
-                cartcount();
             }else if(msg.status == 401){
                 logout();
             }
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
     return false;
 });
@@ -2552,6 +2586,14 @@ $(document).on('click', '.btn-summ-update', function () {
             $('.loading-div').hide();
             if (msg.status == 200) {
                 myApp.alert(msg.message);
+                $('#cart-count').html(msg.cartqty);
+                $('#cost-price').html(msg.cart_total.totalprice);
+                if (hasdelivery==1){
+                    if($('#recipient-address').val() != ""){
+                        getdeliveryprice($('#recipient-address').val());
+                    }
+
+                }
             }else if(msg.status == 401){
                 logout();
             }
@@ -2559,7 +2601,9 @@ $(document).on('click', '.btn-summ-update', function () {
                 $('.summ-qty[data-id="'+upitmid+'"]').val("1");
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
     $(this).hide();
 });
@@ -2598,7 +2642,9 @@ $(document).on('change', '#delivery-state', function () {
                 myApp.alert(msg.status+"\n"+msg.message);
                 return false;
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -2667,7 +2713,9 @@ $(document).on('click', '#btn-profile-update', function () {
                     myApp.alert(msg.message);
                     return false;
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
         return false;
 
@@ -2737,7 +2785,9 @@ $(document).on('click', '#btn-checkout', function () {
                     myApp.alert(msg.message);
                     return false;
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
         return false;
 
@@ -2806,7 +2856,9 @@ myApp.onPageInit('experience', function () {
                 window.location.replace("index.html");
                 return false;
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 });
 
@@ -2845,7 +2897,9 @@ $(document).on('change', '#exp-country', function () {
                 window.location.replace("index.html");
                 return false;
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -2910,7 +2964,9 @@ myApp.onPageInit('experience-list', function (page) {
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -2963,7 +3019,9 @@ myApp.onPageInit('exp-cat-list', function () {
                 alert("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -3176,7 +3234,9 @@ myApp.onPageInit('experience-product', function (page) {
                 $('.single-product-area').html("Status Code: " + msg.status + "\n" + msg.message);
             }
 
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 });
 
@@ -3380,7 +3440,9 @@ $(document).on('click', '#btn-exp-buy', function(){
             } else {
                     myApp.alert(msg.message);
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
     }
 
@@ -3444,7 +3506,9 @@ myApp.onPageInit('transaction-statement', function (page) {
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -3541,7 +3605,9 @@ myApp.onPageInit('orders-page', function (page) {
             else {
                 myApp.alert(msg.message);
             }
-        }
+        },error: function(){
+            myApp.alert(timeout_msg);
+        },timeout: timeout_time
     });
 
 });
@@ -3588,7 +3654,9 @@ $(document).on('click', '#btn-update-password', function(){
                 } else {
                     myApp.alert(msg.message + "\n" + msg.data.new_password);
                 }
-            }
+            },error: function(){
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
     }
 });
