@@ -1246,7 +1246,7 @@ $(document).on('click', '#btn-meal-redeem', function () {
                 $('.loading-div').hide();
                 if (msg.status == 200) {
                     myApp.alert(msg.message);
-                    cartcount();
+                    $('#cart-count').html(msg.cartqty);
 
                 }else if (msg.status == 401){
                     window.location.replace("index.html");
@@ -2433,7 +2433,7 @@ $(document).on('click', '#btn-buy', function () {
                     if (msg.status == 200) {
 
                         myApp.alert(msg.message);
-                        cartcount();
+
                         mainView.router.loadPage('catalogue-new.html');
                     }else if (msg.status == 401){
                         window.location.replace("index.html");
