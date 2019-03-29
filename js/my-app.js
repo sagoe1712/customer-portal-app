@@ -433,7 +433,7 @@ $('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
-    return false;
+   
 }
 
 // Export selectors engine
