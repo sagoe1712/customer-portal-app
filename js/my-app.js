@@ -110,7 +110,7 @@ function getcity(state_id){
             if (msg.status == 200) {
                city = "<option value=''>Select A City</option>"
                 $.each(msg.data.address, function(key,value){
-                    city += "<option value='"+value.id+"' data-city='"+value.city_id+"' data-state='"+value.state_id+"'>"+value.address+"</option>";
+                    city += "<option value='"+value.city_id+"' data-cityname='"+value.city_name+"'>"+value.city_name+"</option>";
                 });
                 $('#delivery-city').html(city);
             }else if(msg.status == 401){
@@ -138,7 +138,7 @@ $(document).on('change','#delivery-state', function(){
 $(document).on('change','#delivery-city', function(){
 
     del_city_id = $('option:selected', this).val();
-    del_city_name = $('option:selected', this).attr('data-state');
+    del_city_name = $('option:selected', this).attr('data-cityname');
 
 });
 
