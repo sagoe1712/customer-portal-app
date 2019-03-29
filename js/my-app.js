@@ -270,6 +270,8 @@ function addaddress(){
                 $('.loading-div').hide();
                 if (msg.status == 200) {
                     myApp.alert("Address has been added");
+                    $('#btn-add-address').hide();
+                    $('#btn-checkout').show();
                     addressid = msg.data.address.id;
                     getdeliveryprice(addressid);
                 }else if(msg.status == 401){
@@ -2505,6 +2507,8 @@ myApp.onPageInit('shopping-cart', function (page) {
 $(document).on('change','#recipient-address',function(){
     addressid = $('option:selected', this).val();
     if (addressid == "new"){
+        $('#btn-add-address').show();
+        $('#btn-checkout').hide();
         $('#txtfname').prop("disabled", false);
         $('#txtlname').prop("disabled", false);
         $('#txtemail').prop("disabled", false);
@@ -2512,8 +2516,6 @@ $(document).on('change','#recipient-address',function(){
         $('#txtaddress').prop("disabled", false);
         $('#delivery-city').prop("disabled", false);
         $('#delivery-state').prop("disabled", false);
-        $('#btn-add-address').show();
-        $('#btn-checkout').hide();
         getstate();
     }else if(addressid){
         $('#txtfname').prop("disabled", false);
@@ -2679,9 +2681,7 @@ $(document).on('change', '#delivery-city', function () {
     city_id = $('#delivery-city').val();
 
     //Using the single delivery item api
-   getdeliveryprice();
-
-
+  // getdeliveryprice();
 });
 
 $(document).on('click', '#btn-profile-update', function () {
