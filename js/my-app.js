@@ -109,7 +109,7 @@ function getcity(state_id){
             $('.loading-div').hide();
             if (msg.status == 200) {
                city = "<option value=''>Select A City</option>"
-                $.each(msg.data.address, function(key,value){
+                $.each(msg.data.cities, function(key,value){
                     city += "<option value='"+value.city_id+"' data-cityname='"+value.city_name+"'>"+value.city_name+"</option>";
                 });
                 $('#delivery-city').html(city);
