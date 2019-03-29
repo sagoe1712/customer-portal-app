@@ -2418,10 +2418,9 @@ $(document).on('click', '#btn-buy', function () {
 
 
             prod_quant = $('#itm-quant').val();
-            var store_id = $('.drppickup').val();
-            var store_name = $('option:selected', '.drppickup').attr(data-branchname);
+
            // mainView.router.loadPage('summary.html');
-            var payload = {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:prod_quant, name:product_name,pickup_location:store_id, pickup_location_name:store_name};
+            var payload = {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:prod_quant, name:product_name,pickup_location:branch_id, pickup_location_name:branch_name};
             myApp.alert(var_dump(payload));
 
             $.ajax({
