@@ -176,7 +176,7 @@ function getstate(){
     var state = "";
     $.ajax({
         type: "GET",
-        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/state",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/states",
         headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
@@ -2523,7 +2523,6 @@ $(document).on('change','#recipient-address',function(){
         $('#txtaddress').prop("disabled", true);
         $('#delivery-state').prop("disabled", true);
         $('#delivery-city').prop("disabled", true);
-
 
 
         $('#txtfname').val($('option:selected', this).attr("data-fname"));
