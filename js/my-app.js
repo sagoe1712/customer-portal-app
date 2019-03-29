@@ -159,6 +159,8 @@ function getdeliveryprice(address_id){
             if (msg.status == 200) {
              delivery_price = msg.data.data.price;
              $("#delivery-text").html(delivery_price);
+             var total_purchase = parseFloat(delivery_price) + parseFloat(tprice);
+                $("#grand-total").html(total_purchase);
             }else if(msg.status == 401){
                 logout();
             }
