@@ -99,7 +99,7 @@ function getcity(state_id){
     var city = "";
     $.ajax({
         type: "GET",
-        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/cities",
+        url:"http://rewardsboxnigeria.com/customerportalapi/public/v1/common/cities/"+state_id,
         headers: {"Authorization": token},
         dataType: "json",
         beforeSend: function() {
