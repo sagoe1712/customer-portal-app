@@ -2761,12 +2761,7 @@ $(document).on('click', '#btn-checkout', function () {
     var phone = $.trim($('#txtphone').val());
     var address = $.trim($('#txtaddress').val());
 
-    if ($("#recipient-address").val() == "new"){
-        addaddress();
-        return false;
 
-
-    }
 
 
     if (first_name == "") {
