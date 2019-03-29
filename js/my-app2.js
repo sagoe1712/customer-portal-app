@@ -85,6 +85,8 @@ var del_city_id;
 var del_city_name;
 var addressid;
 var event_total;
+var timeout_msg = "Error Communicating With Server"
+var timeout_time = 30000;
 
 var myApp = new Framework7();
 
@@ -150,6 +152,11 @@ myApp.onPageInit('about', function (page) {
 
 })(jQuery);
 
+myApp.onPageInit('index', function (page) {
+
+    localStorage.clear();
+});
+
 
 $(document).on('click', '#btn-login', function () {
 
@@ -181,7 +188,10 @@ $(document).on('click', '#btn-login', function () {
                         myApp.alert(msg.message);
                         return false;
                     }
-                }
+                },error: function(){
+                    $('.loading-div').hide();
+                    myApp.alert(timeout_msg);
+                },timeout: timeout_time
             });
             return false;
 
@@ -221,7 +231,10 @@ $(document).on('click', '#btn-email-reset', function () {
                     myApp.alert(msg.message);
                     return false;
                 }
-            }
+            },error: function(){
+                $('.loading-div').hide();
+                myApp.alert(timeout_msg);
+            },timeout: timeout_time
         });
         return false;
     }else {

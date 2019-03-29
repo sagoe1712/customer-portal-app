@@ -89,7 +89,7 @@ var addressid;
 var event_total;
 var success_vouchers = [];
 var timeout_msg = "Error Communicating With Server"
-var timeout_time = 30000;
+var timeout_time = 60000;
 
 var myApp = new Framework7();
 
@@ -120,6 +120,7 @@ function getcity(state_id){
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -165,6 +166,7 @@ function getdeliveryprice(address_id){
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -195,6 +197,7 @@ function getstate(){
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -226,6 +229,7 @@ function pulladdress(){
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -273,6 +277,7 @@ function addaddress(){
                     myApp.alert(msg.message);
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -347,6 +352,7 @@ function cartcount(){
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -421,6 +427,7 @@ function cartitem(){
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -489,9 +496,8 @@ myApp.onPageInit('about', function (page) {
 $(document).on('click', '#logout', function () {
     window.location.replace('index.html');
     return false;
-
-
 });
+
 myApp.onPageInit('catalogue', function (page) {
     //myApp.alert("catalogue page loaded");
 
@@ -532,6 +538,7 @@ myApp.onPageInit('catalogue', function (page) {
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -540,16 +547,12 @@ myApp.onPageInit('catalogue', function (page) {
 
 myApp.onPageInit('index-inner', function (page) {
     //alert(token);
-       // cartcount();
+       cartcount();
 });
 
-myApp.onPageInit('index', function (page) {
-
-    localStorage.clear();
-});
 
 myApp.onPageInit('cinema-page', function (page) {
-    cartcount();
+   // cartcount();
     var list_table = "";
     var d = 0;
 
@@ -596,6 +599,7 @@ myApp.onPageInit('cinema-page', function (page) {
                 $('.list-cinemas').html(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -656,7 +660,7 @@ $(document).on('click', 'a.cinema-link1', function () {
 
 myApp.onPageInit('movie-details', function (page) {
 
-    cartcount();
+   // cartcount();
 
     var result;
     var movie_date;
@@ -742,6 +746,7 @@ myApp.onPageInit('movie-details', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -762,7 +767,7 @@ $(document).on('click', '.btn-showtimes', function(){
 
 myApp.onPageInit('movie-cart', function (page) {
 
-    cartcount();
+   // cartcount();
 
     var ticket_dropdown = "";
     var e = 1;
@@ -860,6 +865,7 @@ $(document).on('click', '#btn-movie-buy', function () {
                     return false;
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -871,7 +877,7 @@ $(document).on('click', '#btn-movie-buy', function () {
 myApp.onPageInit('view-restaurants', function (page) {
     //myApp.alert("catalogue page loaded");
 
-    cartcount();
+   // cartcount();
 
     var list_table = "";
     var d = 0;
@@ -921,6 +927,7 @@ myApp.onPageInit('view-restaurants', function (page) {
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1192,6 +1199,7 @@ var a = 1;
           }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1248,6 +1256,7 @@ $(document).on('click', '#btn-meal-redeem', function () {
                     return false;
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -1302,6 +1311,7 @@ myApp.onPageInit('bills-list', function (page) {
                 alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1409,6 +1419,7 @@ $(document).on('click','#loadMore', function () {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1469,6 +1480,7 @@ $(document).on('change','#drpshopsort', function () {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1531,6 +1543,7 @@ $(document).on('change','#drpshopmethod', function () {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1590,6 +1603,7 @@ myApp.onPageInit('biller-product', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1677,6 +1691,7 @@ $(document).on('blur', '#txtcustid', function () {
                     return false;
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -1738,6 +1753,7 @@ $(document).on('click', '#btn-bill-pay', function () {
                     myApp.alert(msg.message + "\n" + msg.data);
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -1808,6 +1824,7 @@ myApp.onPageInit('shop-list', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -1880,6 +1897,7 @@ myApp.onPageInit('events-list', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2043,6 +2061,7 @@ $(document).on('click', '#btn-event-buy', function () {
                     return false;
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -2086,6 +2105,7 @@ myApp.onPageInit('profile-page', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2148,6 +2168,7 @@ myApp.onPageInit('biller-listing', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2308,6 +2329,7 @@ myApp.onPageInit('single-product', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2360,7 +2382,7 @@ $(document).on('change', '.rad-delmet', function () {
 
 $(document).on('click', '#btn-buy', function () {
 
-    var itmqty = $('#itm-quant').val();
+    //var itmqty = $('#itm-quant').val();
     //myApp.alert(delivery_type);
     // var delmet = $(".rad-opt-met").val();
     // alert(delmet);
@@ -2405,7 +2427,7 @@ $(document).on('click', '#btn-buy', function () {
                 //url:"addtocart.php",
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
                 headers: {"Authorization": token},
-                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:itmqty, name:product_name,pickup_location:store_id, pickup_location_name:store_name},
+                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:prod_quant, name:product_name,pickup_location:store_id, pickup_location_name:store_name},
                 dataType: "json",
                 beforeSend: function() {
                     $('.loading-div').show();
@@ -2415,7 +2437,7 @@ $(document).on('click', '#btn-buy', function () {
                     if (msg.status == 200) {
 
                         myApp.alert(msg.message);
-                        cartcount();
+                        $('#cart-count').html(msg.cartqty);
                         mainView.router.loadPage('catalogue-new.html');
                     }else if (msg.status == 401){
                         window.location.replace("index.html");
@@ -2425,6 +2447,7 @@ $(document).on('click', '#btn-buy', function () {
                         alert(msg.status +"\n" + msg.message);
                     }
                 },error: function(){
+                    $('.loading-div').hide();
                     myApp.alert(timeout_msg);
                 },timeout: timeout_time
             });
@@ -2555,6 +2578,7 @@ $(document).on('click','.delete-itm-cart', function(){
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2602,6 +2626,7 @@ $(document).on('click', '.btn-summ-update', function () {
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2643,6 +2668,7 @@ $(document).on('change', '#delivery-state', function () {
                 return false;
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2714,6 +2740,7 @@ $(document).on('click', '#btn-profile-update', function () {
                     return false;
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -2786,6 +2813,7 @@ $(document).on('click', '#btn-checkout', function () {
                     return false;
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -2796,7 +2824,7 @@ $(document).on('click', '#btn-checkout', function () {
 });
 
 myApp.onPageInit('success-page', function () {
-    cartcount();
+
     var success_result = "";
     $('#vouch').html(voucher_code);
     $('#orderno').html(order_no);
@@ -2857,6 +2885,7 @@ myApp.onPageInit('experience', function () {
                 return false;
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2898,6 +2927,7 @@ $(document).on('change', '#exp-country', function () {
                 return false;
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -2965,6 +2995,7 @@ myApp.onPageInit('experience-list', function (page) {
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -3020,6 +3051,7 @@ myApp.onPageInit('exp-cat-list', function () {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -3235,6 +3267,7 @@ myApp.onPageInit('experience-product', function (page) {
             }
 
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -3441,6 +3474,7 @@ $(document).on('click', '#btn-exp-buy', function(){
                     myApp.alert(msg.message);
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
@@ -3507,6 +3541,7 @@ myApp.onPageInit('transaction-statement', function (page) {
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -3606,6 +3641,7 @@ myApp.onPageInit('orders-page', function (page) {
                 myApp.alert(msg.message);
             }
         },error: function(){
+$('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
@@ -3655,6 +3691,7 @@ $(document).on('click', '#btn-update-password', function(){
                     myApp.alert(msg.message + "\n" + msg.data.new_password);
                 }
             },error: function(){
+$('.loading-div').hide();
                 myApp.alert(timeout_msg);
             },timeout: timeout_time
         });
