@@ -2472,7 +2472,8 @@ myApp.onPageInit('shopping-cart', function (page) {
 
     //var delivery_name;
     //alert(delivery_name);
-    $('#btn-add-address').hide();
+
+   // $('#btn-add-address').hide();
     $('#btn-checkout').show();
     cartcount();
     cartitem();
@@ -2508,6 +2509,7 @@ $(document).on('change','#recipient-address',function(){
     addressid = $('option:selected', this).val();
     if (addressid == "new"){
         $('#btn-add-address').show();
+        $('.btnadd').show();
         $('#btn-checkout').hide();
         $('#txtfname').prop("disabled", false);
         $('#txtlname').prop("disabled", false);
