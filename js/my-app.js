@@ -389,7 +389,6 @@ function cartitem(){
                             result += '<p class="summ-delivery-type">Delivery</p>';
                             hasdelivery = 1;
                             $('#recipient-address').show();
-                            pulladdress();
                             $('#txtfname').prop("disabled", true);
                             $('#txtlname').prop("disabled", true);
                             $('#txtemail').prop("disabled", true);
@@ -2488,13 +2487,7 @@ myApp.onPageInit('shopping-cart', function (page) {
     //     $('.table-cart-address').show();
     //     $('.p-delivery').show();
 if(hasdelivery == 1) {
-    $('.table-cart-address').show();
-    $('.p-delivery').show();
-    $('#recipient-address').show();
-}else {
-    $('.table-cart-address').hide();
-    $('.p-delivery').hide();
-    $('#recipient-address').hide();
+    pulladdress();
 }
 
 
