@@ -2381,8 +2381,6 @@ $(document).on('change', '.rad-delmet', function () {
 });
 
 $(document).on('click', '#btn-buy', function () {
-
-    //var itmqty = $('#itm-quant').val();
     //myApp.alert(delivery_type);
     // var delmet = $(".rad-opt-met").val();
     // alert(delmet);
@@ -2418,17 +2416,14 @@ $(document).on('click', '#btn-buy', function () {
 
 
             prod_quant = $('#itm-quant').val();
-
-           // mainView.router.loadPage('summary.html');
-            var payload = {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:prod_quant, name:product_name,pickup_location:branch_id, pickup_location_name:branch_name};
-            myApp.alert(var_dump(payload));
+            var store_id = $('.drppickup').val();
+            // mainView.router.loadPage('summary.html');
 
             $.ajax({
                 type: "POST",
-                //url:"addtocart.php",
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
                 headers: {"Authorization": token},
-                data: payload,
+                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:1, name:product_name,pickup_location:store_id,  pickup_location_name:branch_name},
                 dataType: "json",
                 beforeSend: function() {
                     $('.loading-div').show();
@@ -2438,7 +2433,7 @@ $(document).on('click', '#btn-buy', function () {
                     if (msg.status == 200) {
 
                         myApp.alert(msg.message);
-                        $('#cart-count').html(msg.cartqty);
+                        cartcount();
                         mainView.router.loadPage('catalogue-new.html');
                     }else if (msg.status == 401){
                         window.location.replace("index.html");
@@ -2461,6 +2456,8 @@ $(document).on('click', '#btn-buy', function () {
         return false;
     }
 });
+
+
 
 
 
