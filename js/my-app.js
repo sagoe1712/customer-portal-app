@@ -1246,7 +1246,7 @@ $(document).on('click', '#btn-meal-redeem', function () {
                 $('.loading-div').hide();
                 if (msg.status == 200) {
                     myApp.alert(msg.message);
-                    $('#cart-count').html(msg.cartqty);
+                    cartcount();
 
                 }else if (msg.status == 401){
                     window.location.replace("index.html");
@@ -2421,9 +2421,10 @@ $(document).on('click', '#btn-buy', function () {
 
             $.ajax({
                 type: "POST",
+                //url:"addtocart.php",
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
                 headers: {"Authorization": token},
-                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:1, name:product_name,pickup_location:store_id,  pickup_location_name:branch_name},
+                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:prod_quant, name:product_name, pickup_location:store_id, pickup_location_name:branch_name},
                 dataType: "json",
                 beforeSend: function() {
                     $('.loading-div').show();
@@ -2433,7 +2434,7 @@ $(document).on('click', '#btn-buy', function () {
                     if (msg.status == 200) {
 
                         myApp.alert(msg.message);
-
+                        $('#cart-count').html('msg.cartqty');
                         mainView.router.loadPage('catalogue-new.html');
                     }else if (msg.status == 401){
                         window.location.replace("index.html");
