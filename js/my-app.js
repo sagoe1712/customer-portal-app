@@ -204,7 +204,7 @@ $('.loading-div').hide();
 }
 
 function pulladdress(){
-myApp.alert("pull address action");
+
     var addrp = "";
     $.ajax({
         type: "GET",
@@ -418,7 +418,7 @@ function cartitem(){
                 currency = msg.data.cart_value.currency;
 
                 $('#cost-price').html(msg.data.cart_value.total_cart_price +" "+msg.data.cart_value.currency);
-               
+
 
                 // console.log(msg.data.cart_value.total_cart_price +" "+msg.data.cart_value.currency);
 
@@ -2488,9 +2488,11 @@ myApp.onPageInit('shopping-cart', function (page) {
     //     delivery_name = "Delivery";
     //     $('.table-cart-address').show();
     //     $('.p-delivery').show();
-if(hasdelivery == 1) {
-    pulladdress();
-}
+
+
+// if(hasdelivery == 1) {
+//
+// }
 
 
 
