@@ -388,6 +388,7 @@ function cartitem(){
                         } else if (value.delivery_type == 2) {
                             result += '<p class="summ-delivery-type">Delivery</p>';
                             hasdelivery = 1;
+                            $('#recipient-address').show();
                             pulladdress();
                             $('#txtfname').prop("disabled", true);
                             $('#txtlname').prop("disabled", true);
