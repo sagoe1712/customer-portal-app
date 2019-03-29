@@ -2489,9 +2489,11 @@ myApp.onPageInit('shopping-cart', function (page) {
 if(hasdelivery == 1) {
     $('.table-cart-address').show();
     $('.p-delivery').show();
+    $('#recipient-address').show();
 }else {
     $('.table-cart-address').hide();
     $('.p-delivery').hide();
+    $('#recipient-address').hide();
 }
 
 
@@ -2570,6 +2572,7 @@ $(document).on('click','.delete-itm-cart', function(){
                 $('#cart-count').html(msg.cartqty);
                 $('#cost-price').html(msg.cart_total.totalprice);
                 cartitem();
+                return false;
             }else if(msg.status == 401){
                 logout();
             }
