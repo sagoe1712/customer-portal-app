@@ -204,7 +204,7 @@ $('.loading-div').hide();
 }
 
 function pulladdress(){
-
+myApp.alert("pull address action");
     var addrp = "";
     $.ajax({
         type: "GET",
@@ -218,12 +218,12 @@ function pulladdress(){
             $('.loading-div').hide();
             if (msg.status == 200) {
                 addrp += "<option value='new'>Enter New Address</option>";
-                if(msg.data.address != "") {
+                if(msg.data.address.length > 0) {
                     $.each(msg.data.address, function (key, value) {
                         addrp += "<option value='" + value.id + "' data-city='" + value.city_id + "' data-state='" + value.state_id + "' data-fname='" + value.firstname + "' data-lname='" + value.lastname + "' data-email='" + value.email + "'data-phone='" + value.phone + "' data-address = '" + value.address + "'>" + value.address + "</option>";
                     });
                 }
-                $('#recipient-address').html(addrp);
+                $('#recipient-address').append(addrp);
             }else if(msg.status == 401){
                 logout();
             }
