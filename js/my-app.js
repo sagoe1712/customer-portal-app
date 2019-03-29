@@ -2421,13 +2421,15 @@ $(document).on('click', '#btn-buy', function () {
             var store_id = $('.drppickup').val();
             var store_name = $('option:selected', '.drppickup').attr(data-branchname);
            // mainView.router.loadPage('summary.html');
+            var payload = {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:prod_quant, name:product_name,pickup_location:store_id, pickup_location_name:store_name};
+            myApp.alert(var_dump(payload));
 
             $.ajax({
                 type: "POST",
                 //url:"addtocart.php",
                 url: "http://rewardsboxnigeria.com/customerportalapi/public/v1/cart/add",
                 headers: {"Authorization": token},
-                data: {delivery_method: delivery_type,signature:prod_signature, price: unitprice, qty:prod_quant, name:product_name,pickup_location:store_id, pickup_location_name:store_name},
+                data: payload,
                 dataType: "json",
                 beforeSend: function() {
                     $('.loading-div').show();
