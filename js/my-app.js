@@ -398,6 +398,8 @@ function cartitem(){
                             $('#txtaddress').prop("disabled", true);
                             $('#delivery-state').prop("disabled", true);
                             $('#delivery-city').prop("disabled", true);
+                            pulladdress();
+
                         }
                         result += '<input type="number" id="'+ value.id +'" class="summ-qty inputtype" min="1" value="' + value.qty + '" max="' + max_quant + '" data-id="' + value.id + '"> <a href="#" class="btn-summ-update" style="display: none;" data-id="' + value.id + '">Update</a>';
 
@@ -416,9 +418,7 @@ function cartitem(){
                 currency = msg.data.cart_value.currency;
 
                 $('#cost-price').html(msg.data.cart_value.total_cart_price +" "+msg.data.cart_value.currency);
-                //console.log(tprice);
-                totalshipitm();
-
+               
 
                 // console.log(msg.data.cart_value.total_cart_price +" "+msg.data.cart_value.currency);
 
@@ -433,7 +433,7 @@ $('.loading-div').hide();
             myApp.alert(timeout_msg);
         },timeout: timeout_time
     });
-   
+
 }
 
 // Export selectors engine
