@@ -2483,17 +2483,15 @@ myApp.onPageInit('shopping-cart', function (page) {
     // var result;
     // var result2;
     //
-    // if (delivery_type == 1) {
-    //     delivery_name = "Pick Up:";
-    //     $('.table-cart-address').hide();
-    //     $('.p-delivery').hide();
-    //
-    //
-    // } else if (delivery_type == 2) {
-    //     delivery_name = "Delivery";
-    //     $('.table-cart-address').show();
-    //     $('.p-delivery').show();
+    if (hasdelivery == 1) {
+        $('.table-cart-address').show();
+        $('.p-delivery').show();
 
+
+    } else{
+        $('.table-cart-address').hide();
+        $('.p-delivery').hide();
+    }
 
 // if(hasdelivery == 1) {
 //
