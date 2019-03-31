@@ -2801,8 +2801,9 @@ $(document).on('click', '#btn-checkout', function () {
 
                     voucher_code = msg.data.voucher_code;
                     order_no = msg.data.order_id;
-                    mainView.router.loadPage('success.html');
                     delivery_type = "";
+                    mainView.router.loadPage('success.html');
+                    return false;
                 }else if (msg.status == 401){
                 window.location.replace("index.html");
                 return false;
