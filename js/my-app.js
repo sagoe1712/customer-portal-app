@@ -2536,7 +2536,9 @@ $(document).on('change','#recipient-address',function(){
         $('#txtemail').val($('option:selected', this).attr("data-email"));
         $('#txtphone').val($('option:selected', this).attr("data-phone"));
         $('#txtaddress').val($('option:selected', this).attr("data-address"));
+        getstate();
         $('#delivery-state').val($('option:selected', this).attr("data-state"));
+        getcity($('option:selected', this).attr("data-city"));
         $('#delivery-city').val($('option:selected', this).attr("data-city"));
         getdeliveryprice(addressid);
         $('#btn-add-address').hide();
@@ -2808,7 +2810,7 @@ $(document).on('click', '#btn-checkout', function () {
                 window.location.replace("index.html");
                 return false;
             } else {
-                    myApp.alert(msg.message);
+                    myApp.alert(msg.data);
                     return false;
                 }
             },error: function(){
