@@ -2486,11 +2486,13 @@ myApp.onPageInit('shopping-cart', function (page) {
     if (hasdelivery == 1) {
         $('.table-cart-address').show();
         $('.p-delivery').show();
+        $('.grand-t').show();
 
 
     } else{
         $('.table-cart-address').hide();
         $('.p-delivery').hide();
+        $('.grand-t').hide();
     }
 
 // if(hasdelivery == 1) {
