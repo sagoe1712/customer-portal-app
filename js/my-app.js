@@ -836,7 +836,7 @@ $(document).on('click', '#btn-movie-buy', function () {
     } else {
 
         var payload = {
-            quantity: prod_quant,
+            qty: prod_quant,
             price: movie_price,
             signature: prod_signature,
             email: email,
@@ -865,6 +865,9 @@ $(document).on('click', '#btn-movie-buy', function () {
                     success_vouchers = msg.orders;
                     mainView.router.loadPage('success.html');
                     delivery_type = "";
+                    return false;
+                }else if (msg.status == 401){
+                    window.location.replace("index.html");
                     return false;
                 } else {
                     myApp.alert(msg.message);
